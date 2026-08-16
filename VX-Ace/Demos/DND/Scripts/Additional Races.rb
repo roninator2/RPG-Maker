@@ -1,59 +1,70 @@
-# ╔═════════════════════════════════════╦════════════════════╗
-# ║ Title: D&D Additional Races         ║  Version: 1.00     ║
-# ║ Author: Roninator2                  ║                    ║
-# ╠═════════════════════════════════════╬════════════════════╣
-# ║ Function:                           ║   Date Created     ║
-# ║                                     ╠════════════════════╣
-# ║   Allows to add additional races    ║    04 Dec 2023     ║
-# ╚═════════════════════════════════════╩════════════════════╝
-# ╔══════════════════════════════════════════════════════════╗
-# ║ Requires: DnD Distribution Points by Roninator2          ║
-# ║           DnD Character Creation by Roninator2           ║
-# ╚══════════════════════════════════════════════════════════╝
-# ╔══════════════════════════════════════════════════════════╗
-# ║ Adding Orc Race type to Config                           ║
-# ╚══════════════════════════════════════════════════════════╝
-# ╔══════════════════════════════════════════════════════════╗
-# ║ Instructions:                                            ║
-# ║  Follow Parent script instructions                       ║
-# ║                                                          ║
-# ║  To use this for more races just change a few parts      ║
-# ║  You can either copy and paste each section to add on    ║
-# ║  more, or you can make a new script slot for each race.  ║
-# ║  and copy this script into each slot, then change stuff  ║
-# ║                                                          ║
-# ║ Race_Settings[:orc] <- change to another name            ║
-# ║    e.g. [:goblin]                                        ║
-# ║   Change the stat parameters to that race's normal       ║
-# ║                                                          ║
-# ║ Race_Bonus[:orc] <- change to the same you changed above ║
-# ║                                                          ║
-# ║ Initial_Points[:orc] <- change to the same as above      ║
-# ║                                                          ║
-# ║ Max_Initial_Value[:orc] <- change to the same as above   ║
-# ║                                                          ║
-# ║ Gain_Points[:orc] <- change to same name as above        ║
-# ║     Set the points for that race                         ║
-# ║                                                          ║
-# ║ In R2_DnD_Character_Creation                             ║
-# ║   Races[:orc] = "Orc" <- Chnage to new race values       ║
-# ║                                                          ║
-# ║ Jobs[:orc] = {:fighter => "Fighter",                     ║
-# ║               :cleric => "Cleric",                       ║
-# ║              }                                           ║
-# ║   Change to race name you're using and change the jobs   ║
-# ║     that the new race is able to do.                     ║
-# ║                                                          ║
-# ║ All done. New race will show up when creating a character║
-# ╚══════════════════════════════════════════════════════════╝
-# ╔══════════════════════════════════════════════════════════╗
-# ║ Updates:                                                 ║
-# ║ 1.00 - 03 Dec 2023 - Script finished                     ║
-# ╚══════════════════════════════════════════════════════════╝
-# ╔══════════════════════════════════════════════════════════╗
-# ║ Terms of use:                                            ║
-# ║ Free for all uses in RPG Maker except nudity             ║
-# ╚══════════════════════════════════════════════════════════╝
+# ╔═══════════════════════════════════════════════╦════════════════════╗
+# ║ Title: D&D Additional Races Option 1          ║  Version: 1.01     ║
+# ║ Author: Roninator2                            ║                    ║
+# ╠═══════════════════════════════════════════════╬════════════════════╣
+# ║ Function:                                     ║   Date Created     ║
+# ║                                               ╠════════════════════╣
+# ║   Allows to add additional races              ║    04 Dec 2023     ║
+# ╚═══════════════════════════════════════════════╩════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Requires: DnD Distribution Points by Roninator2                    ║
+# ║           DnD Character Creation by Roninator2                     ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Brief Description:                                                 ║
+# ║ Adding Orc Race type to Config                                     ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Instructions:                                                      ║
+# ║  Follow Parent script instructions                                 ║
+# ║                                                                    ║
+# ║  To use this for more races just change a few parts                ║
+# ║  You can either copy and paste each section to add on              ║
+# ║  more, or you can make a new script slot for each race.            ║
+# ║  and copy this script into each slot, then change stuff            ║
+# ║                                                                    ║
+# ║ Race_Settings[:orc] <- change to another name                      ║
+# ║    e.g. [:goblin]                                                  ║
+# ║   Change the stat parameters to that race's normal                 ║
+# ║                                                                    ║
+# ║ Race_Bonus[:orc] <- change to the same you changed above           ║
+# ║                                                                    ║
+# ║ Initial_Points[:orc] <- change to the same as above                ║
+# ║                                                                    ║
+# ║ Max_Initial_Value[:orc] <- change to the same as above             ║
+# ║                                                                    ║
+# ║ Gain_Points[:orc] <- change to same name as above                  ║
+# ║     Set the points for that race                                   ║
+# ║                                                                    ║
+# ║ In R2_DnD_Character_Creation                                       ║
+# ║   Races[:orc] = "Orc" <- Chnage to new race values                 ║
+# ║                                                                    ║
+# ║ Jobs[:orc] = {:fighter => "Fighter",                               ║
+# ║               :cleric => "Cleric",                                 ║
+# ║              }                                                     ║
+# ║   Change to race name you're using and change the jobs             ║
+# ║     that the new race is able to do.                               ║
+# ║                                                                    ║
+# ║ All done. New race will show up when creating a character          ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Updates:                                                           ║
+# ║ 1.00 - 03 Dec 2023 - Script finished                               ║
+# ║ 1.01 - 14 Mar 2026 - Added Import Value                            ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Credits and Thanks:                                                ║
+# ║   Roninator2                                                       ║
+# ║                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Terms of use:                                                      ║
+# ║  Follow the original Authors terms of use where applicable         ║
+# ║    - When not made by me (Roninator2)                              ║
+# ║  Free for all uses in RPG Maker except nudity                      ║
+# ║  No part of this code can be used with AI programs or tools        ║
+# ║  Credit must be given                                              ║
+# ╚════════════════════════════════════════════════════════════════════╝
 
 module Distribute_Config
   # Race Bonus
@@ -140,8 +151,14 @@ module R2_DnD_Character_Creation
   # Add race type here
   Races[:orc] = "Orc"
   # Professions for this race
-  Jobs[:orc] = {:fighter => "Fighter",
-                :cleric => "Cleric",
+  Jobs[:orc] = {:fighter => 45,
+                :cleric => 43,
                 }
 
 end
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║                      End of editable region                        ║
+# ╚════════════════════════════════════════════════════════════════════╝
+$imported = {} if $imported.nil?
+$imported[:r2_ddar1] = 1.01        # D&D Additional Races Option 1
+
