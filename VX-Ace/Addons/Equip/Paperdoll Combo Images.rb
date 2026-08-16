@@ -1,34 +1,49 @@
-# ╔═════════════════════════════════════╦════════════════════╗
-# ║ Title: Paperdoll Combo Images       ║  Version: 1.00     ║
-# ║ Author: Roninator2                  ║                    ║
-# ╠═════════════════════════════════════╬════════════════════╣
-# ║ Function:                           ║   Date Created     ║
-# ║                                     ╠════════════════════╣
-# ║ Change paperdoll image              ║    18 Sep 2021     ║
-# ╚═════════════════════════════════════╩════════════════════╝
-# ╔══════════════════════════════════════════════════════════╗
-# ║ When equipping several armours together, the base image  ║
-# ║ will change if the combination is set in the script.     ║
-# ╚══════════════════════════════════════════════════════════╝
-# ╔══════════════════════════════════════════════════════════╗
-# ║ Instructions:                                            ║
-# ║   Specify the combination for each armour sets           ║
-# ║      [1,4] => 10                                         ║
-# ║      [1,4,8] => 11                                       ║
-# ╚══════════════════════════════════════════════════════════╝
-# ╔══════════════════════════════════════════════════════════╗
-# ║ Updates:                                                 ║
-# ║   2021 09 28 -> fixed checking for combos                ║
-# ╚══════════════════════════════════════════════════════════╝
-# ╔══════════════════════════════════════════════════════════╗
-# ║ Requires:                                                ║
-# ║   BlackMorning - Basic Module                            ║
-# ║   BlackMorning - Advanced Equip                          ║
-# ╚══════════════════════════════════════════════════════════╝
-# ╔══════════════════════════════════════════════════════════╗
-# ║ Terms of use:                                            ║
-# ║ Free for all uses in RPG Maker except nudity             ║
-# ╚══════════════════════════════════════════════════════════╝
+# ╔═══════════════════════════════════════════════╦════════════════════╗
+# ║ Title: Paperdoll Combo Images                 ║  Version: 1.01     ║
+# ║ Author: Roninator2                            ║                    ║
+# ╠═══════════════════════════════════════════════╬════════════════════╣
+# ║ Function:                                     ║   Date Created     ║
+# ║                                               ╠════════════════════╣
+# ║ Change paperdoll image                        ║    18 Sep 2021     ║
+# ╚═══════════════════════════════════════════════╩════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Requires:                                                          ║
+# ║   BlackMorning - Basic Module                                      ║
+# ║   BlackMorning - Advanced Equip                                    ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Brief Description:                                                 ║
+# ║   When equipping several armours together, the base image          ║
+# ║   will change if the combination is set in the script.             ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Instructions:                                                      ║
+# ║   Specify the combination for each armour sets                     ║
+# ║      [1,4] => 10                                                   ║
+# ║      [1,4,8] => 11                                                 ║
+# ║                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Updates:                                                           ║
+# ║ 1.00 - 18 Sep 2021 - Script finished                               ║
+# ║ 1.01 - 14 Mar 2026 - Added Import Value                            ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Credits and Thanks:                                                ║
+# ║   Roninator2                                                       ║
+# ║                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Terms of use:                                                      ║
+# ║  Follow the original Authors terms of use where applicable         ║
+# ║    - When not made by me (Roninator2)                              ║
+# ║  Free for all uses in RPG Maker except nudity                      ║
+# ║  Anyone using this script in their project before these terms      ║
+# ║  were changed are allowed to use this script even if it conflicts  ║
+# ║  with these new terms. New terms effective 03 Apr 2024             ║
+# ║  No part of this code can be used with AI programs or tools        ║
+# ║  Credit must be given                                              ║
+# ╚════════════════════════════════════════════════════════════════════╝
 
 module R2_Paperdoll_Combo
   Paperdoll = {
@@ -38,6 +53,12 @@ module R2_Paperdoll_Combo
     [63,63] => 67,
   }
 end
+
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║                      End of editable region                        ║
+# ╚════════════════════════════════════════════════════════════════════╝
+$imported = {} if $imported.nil?
+$imported[:r2_pdci] = 1.01         # Paperdoll Combo Images
 
 class Window_EquipActor < Window_Base
   def draw_all_items
