@@ -36,9 +36,6 @@
 # ║  Follow the original Authors terms of use where applicable         ║
 # ║    - When not made by me (Roninator2)                              ║
 # ║  Free for all uses in RPG Maker except nudity                      ║
-# ║  Anyone using this script in their project before these terms      ║
-# ║  were changed are allowed to use this script even if it conflicts  ║
-# ║  with these new terms. New terms effective 03 Apr 2024             ║
 # ║  No part of this code can be used with AI programs or tools        ║
 # ║  Credit must be given                                              ║
 # ╚════════════════════════════════════════════════════════════════════╝
