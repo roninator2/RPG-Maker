@@ -1,12 +1,54 @@
-#==============================================================================
-# Different effects outside the battle
-# By Lecode
-#----------------------
-# Use <when_outside: x> on skills and items notetags.
-# When the party is outside, the effects of the skill/item with
-# the ID x w'll be used instead of the selected skill/item's effects
-# Added <when_inside: x> - Roninator2
-#==============================================================================
+# ╔═══════════════════════════════════════════════╦════════════════════╗
+# ║ Title: Different effects outside the battle   ║  Version: 1.01     ║
+# ║ Author: Lecode + Roninator2                   ║                    ║
+# ╠═══════════════════════════════════════════════╬════════════════════╣
+# ║ Function:                                     ║   Date Created     ║
+# ║                                               ╠════════════════════╣
+# ║   Script Function                             ║    02 Dec 2021     ║
+# ╚═══════════════════════════════════════════════╩════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Requires: nil                                                      ║
+# ║                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Brief Description:                                                 ║
+# ║                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Instructions:                                                      ║
+# ║   Use <when_outside: x> on skills and items notetags.              ║
+# ║   When the party is outside, the effects of the skill/item with    ║
+# ║   the ID x w'll be used instead of the selected skill/item's       ║
+# ║   effects                                                          ║
+# ║   Added <when_inside: x> - Roninator2                              ║
+# ║                                                                    ║
+# ║                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Updates:                                                           ║
+# ║ 1.00 - 02 Dec 2021 - Script modified                               ║
+# ║ 1.01 - 14 Mar 2026 - Added Import Value                            ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Credits and Thanks:                                                ║
+# ║   Roninator2                                                       ║
+# ║                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Terms of use:                                                      ║
+# ║  Follow the original Authors terms of use where applicable         ║
+# ║    - When not made by me (Roninator2)                              ║
+# ║  Free for all uses in RPG Maker except nudity                      ║
+# ║  No part of this code can be used with AI programs or tools        ║
+# ║  Credit must be given                                              ║
+# ╚════════════════════════════════════════════════════════════════════╝
+
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║                      End of editable region                        ║
+# ╚════════════════════════════════════════════════════════════════════╝
+$imported = {} if $imported.nil?
+$imported[:r2_ldeob] = 1.01        # Different effects outside the battle
+
 module Lecode_ItemOutside
   def self.get_outside_item(item)
     return item if $game_party.in_battle
@@ -32,12 +74,6 @@ module Lecode_ItemOutside
     end
     return item
   end
-  def self.use_item_ft(item)
-    other_id = item.use_item_ft
-    if other_id != nil
-      return true
-    end
-  end
 end
 
 class Scene_ItemBase
@@ -54,14 +90,10 @@ class Game_Battler
     pay_skill_cost(item) if item.is_a?(RPG::Skill)
     consume_item(item) if item.is_a?(RPG::Item)
     true_item = Lecode_ItemOutside.get_outside_item(item)
-    use_item_ft = Lecode_ItemOutside.use_item_ft(item)
     if true_item.nil?
       item.effects.each {|effect| item_global_effect_apply(effect) }
     else
       true_item.effects.each {|effect| item_global_effect_apply(effect) }
-    end
-    if use_item_ft == true
-      item_apply(self, item)
     end
   end
 end
@@ -73,24 +105,17 @@ class RPG::UsableItem
   def inside_item_id
     self.note =~ /<when_inside:[ ]?(.+)>/ ? $1.to_i : 0
   end
-  def use_item_ft
-    self.note =~ /<use_ft>/ 
-  end
 end
 
 class Scene_Battle < Scene_Base
   def use_item
     item = @subject.current_action.item
     true_item = Lecode_ItemOutside.get_inside_item(item)
-    use_item_ft = Lecode_ItemOutside.use_item_ft(item)
     @log_window.display_use_item(@subject, true_item)
     @subject.use_item(true_item)
     refresh_status
     targets = @subject.current_action.make_targets.compact
     show_animation(targets, true_item.animation_id)
     targets.each {|target| true_item.repeats.times { invoke_item(target, true_item) } }
-    if use_item_ft == true
-      targets.each {|target| item.repeats.times { invoke_item(target, item) } }
-    end
   end
 end
