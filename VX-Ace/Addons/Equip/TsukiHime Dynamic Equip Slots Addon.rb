@@ -1,36 +1,102 @@
-=begin
-#=====================================================================
-#   HIME's Dynamic Equip Slots - Add-on
-#   Version 1.0.01
-#   Author: Roninator2
-#   Date: 18 Aug 2019
-#   Latest: 18Aug 2019
-#=====================================================================#
-#   UPDATE LOG
-#---------------------------------------------------------------------#
-# 18 Aug 2019 - Created notetag to add slots by level
-#=====================================================================#
-#       NOTETAGS
-#=====================================================================#
-
-Notetag actors as many times as you require with the following:
-
-    * <add slot: Level, etype_id>
-    * e.g. <add slot: 5, 4>
- Where `etype_id` is the equip type ID. By default, they are as follows:
-   0 - weapon
-   1 - shield
-   2 - headgear
-   3 - bodygear
-   4 - accessory
- 
-=end
+# ╔═══════════════════════════════════════════════╦════════════════════╗
+# ║ Title: HIME's Dynamic Equip Slots - Add-on    ║  Version: 1.03     ║
+# ║ Author: Roninator2                            ║                    ║
+# ╠═══════════════════════════════════════════════╬════════════════════╣
+# ║ Function:                                     ║   Date Created     ║
+# ║                                               ╠════════════════════╣
+# ║   Alter Slot Additions                        ║    18 Aug 2019     ║
+# ╚═══════════════════════════════════════════════╩════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Requires: HIME's Dynamic Equip Slots                               ║
+# ║                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Brief Description:                                                 ║
+# ║       Created notetag to add slots by level                        ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Instructions:                                                      ║
+# ║   Notetag actors as many times as you require with the following:  ║
+# ║     * <add slot: Level, etype_id>                                  ║
+# ║     * e.g. <add slot: 5, 4>                                        ║
+# ║   This will add a slot type 4 to the actor when reaching level 5   ║
+# ║                                                                    ║
+# ║   Where `etype_id` is the equip type ID.                           ║
+# ║   By default, they are as follows:                                 ║
+# ║         0 - weapon                                                 ║
+# ║         1 - shield                                                 ║
+# ║         2 - headgear                                               ║
+# ║         3 - bodygear                                               ║
+# ║         4 - accessory                                              ║
+# ║                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Updates:                                                           ║
+# ║ 1.00 - 18 Aug 2019 - Script finished                               ║
+# ║ 1.01 - 22 Aug 2019 - Added Features                                ║
+# ║ 1.02 - 22 Aug 2019 - Added Features                                ║
+# ║ 1.03 - 14 Mar 2026 - Added Import Value                            ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Credits and Thanks:                                                ║
+# ║   Roninator2                                                       ║
+# ║   Tsukihime                                                        ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Terms of use:                                                      ║
+# ║  Follow the original Authors terms of use where applicable         ║
+# ║    - When not made by me (Roninator2)                              ║
+# ║  Free for all uses in RPG Maker except nudity                      ║
+# ║  No part of this code can be used with AI programs or tools        ║
+# ║  Credit must be given                                              ║
+# ╚════════════════════════════════════════════════════════════════════╝
 
 module TH
   module Dynamic_Equip_Slots
     Regexlevel = /<add[-_ ]slot:[-_ ](\d+*)\,*.*?(\d+*)>/i
+    PlayCustSnd = true
+    PlaySnd = true
+    Equip_sound_effect  = ["Chime2", 80, 115]
+    Gained_Slot_Text     = "%s has gained an equipment slot!"
+    Showtxt = true
   end
 end
+
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║                      End of editable region                        ║
+# ╚════════════════════════════════════════════════════════════════════╝
+$imported = {} if $imported.nil?
+$imported[:r2_hdesa] = 1.03        # HIME's Dynamic Equip Slots - Add-on
+
+module R2_slot_script
+  #--------------------------------------------------------------------------
+  # * required
+  #   This method checks for the existance of the basic module and other
+  #   VE scripts required for this script to work, don't edit this
+  #--------------------------------------------------------------------------
+  def self.required(name, req, type = nil)
+    if !$imported["TH_DynamicEquipSlots"]
+      msg = "The script '%s' requires the script\n"
+      msg += "'HIME Dynamic Equip Slots' above to work properly"
+      msgbox(sprintf(msg, self.script_name(name)))
+      exit
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * script_name
+  #   Get the script name base on the imported value, don't edit this
+  #--------------------------------------------------------------------------
+  def self.script_name(name, ext = nil)
+    name = name.to_s.gsub("_", " ").upcase.split
+    name.collect! {|char| char == ext ? "#{char} -" : char.capitalize }
+    name.join(" ")
+  end
+end
+
+$imported = {} if $imported.nil?
+$imported["TH_DynamicEquipSlots_Level_Addon"] = true
+$imported["R2-HDESA-1.03"] = true        # HIME's Dynamic Equip Slots - Add-on
+R2_slot_script.required("TH_DynamicEquipSlots_Level_Addon", "TH_DynamicEquipSlots", :above)
 
 module RPG
   class Actor
@@ -40,6 +106,14 @@ module RPG
       results.each do |res|
         if $game_actors[@id].level == res[0].to_i
           $game_actors[@id].add_equip_slot(res[1].to_i)
+          if TH::Dynamic_Equip_Slots::PlayCustSnd
+            RPG::SE.new(*TH::Dynamic_Equip_Slots::Equip_sound_effect).play
+          elsif TH::Dynamic_Equip_Slots::PlaySnd
+            Sound.play_equip
+          end
+          if TH::Dynamic_Equip_Slots::Showtxt
+            $game_message.add(sprintf(TH::Dynamic_Equip_Slots::Gained_Slot_Text, @name))
+          end
         end
       end
     end
