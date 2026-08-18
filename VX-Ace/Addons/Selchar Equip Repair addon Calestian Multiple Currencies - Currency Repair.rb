@@ -1,38 +1,39 @@
 # ╔═══════════════════════════════════════════════╦════════════════════╗
-# ║ Title: Currency Repair                        ║  Version: 1.04     ║
+# ║ Title: Currency Repair                        ║  Version: 1.00     ║
 # ║ Author: Roninator2                            ║                    ║
 # ╠═══════════════════════════════════════════════╬════════════════════╣
 # ║ Function:                                     ║   Date Created     ║
 # ║                                               ╠════════════════════╣
-# ║   Process Adjustment                          ║    26 Dec 2020     ║
+# ║   Add alternate Currency uses                 ║    26 Dec 2020     ║
 # ╚═══════════════════════════════════════════════╩════════════════════╝
 # ╔════════════════════════════════════════════════════════════════════╗
-# ║ Requires: Calestian Multiple Currencies script                     ║
+# ║ Requires: Calestian Multiple Currencies                            ║
 # ║                                                                    ║
 # ╚════════════════════════════════════════════════════════════════════╝
 # ╔════════════════════════════════════════════════════════════════════╗
 # ║ Brief Description:                                                 ║
-# ║     Allow repair with alternate currencies                         ║
+# ║       Allow repair with alternate currencies                       ║
 # ╚════════════════════════════════════════════════════════════════════╝
 # ╔════════════════════════════════════════════════════════════════════╗
 # ║ Instructions:                                                      ║
-# ║   Script addon to allow for damaging of items or                   ║
-# ║   partial repair of items or specifying                            ║
-# ║   what currency to use for a specific item                         ║
+# ║   Script addon to allow for damaging of items or partial repair    ║
+# ║   of items or specifying what currency to use for a specific item  ║
 # ║                                                                    ║
 # ║   Use note tag <repair currency: X> # X = Currency ID              ║
-# ║   to specify what currency to use Default is 0 (Gold)              ║
+# ║   to specify what currency to use. Default is 0 (Gold)             ║
 # ║                                                                    ║
 # ║   Turn switches on to enable Damage and Partial Repair             ║
 # ║                                                                    ║
 # ╚════════════════════════════════════════════════════════════════════╝
 # ╔════════════════════════════════════════════════════════════════════╗
 # ║ Updates:                                                           ║
-# ║ 1.00 - 26 Dec 2020 - Script finished                               ║
-# ║ 1.01 - 27 Dec 2020 - Corrected buying icon/error                   ║
+# ║ 1.00 - 27 Dec 2020 - Script finished                               ║
+# ║ 1.01 - 26 Dec 2020 - Corrected buying icon/error and fixed enabled ║
 # ║ 1.02 - 27 Dec 2020 - Added icons for each item                     ║
-# ║ 1.03 - 27 Dec 2020 - Recreated shop number window - yanfly shop    ║
-# ║ 1.02 - 14 Mar 2026 - Added Import Value                            ║
+# ║         If true will show currency icon instead of equipemnt icon  ║
+# ║ 1.03 - 27 Dec 2020 - Recreated shop number window due to conflict  ║
+# ║                      with yanfly shop options script.              ║
+# ║ 1.04 - 14 Mar 2026 - Added Import Value                            ║
 # ╚════════════════════════════════════════════════════════════════════╝
 # ╔════════════════════════════════════════════════════════════════════╗
 # ║ Credits and Thanks:                                                ║
@@ -48,9 +49,6 @@
 # ║  Credit must be given                                              ║
 # ╚════════════════════════════════════════════════════════════════════╝
 
-#==============================================================================
-# ■ Module for currency repair
-#==============================================================================
 module TH_Instance
   module Scene_Repair
     Partial = "Partial"
@@ -61,11 +59,12 @@ module TH_Instance
     Draw_Currency_Icon = true # draw currency instead of item icon on each item
   end
 end
+
 # ╔════════════════════════════════════════════════════════════════════╗
 # ║                      End of editable region                        ║
 # ╚════════════════════════════════════════════════════════════════════╝
 $imported = {} if $imported.nil?
-$imported[:r2_core] = 1.01        # Core
+$imported[:r2_sercmc] = 1.01       # Selchar Equip Repair Calestian Multiple Currency
 
 #==============================================================================
 # ■ Window_RepairCommand
