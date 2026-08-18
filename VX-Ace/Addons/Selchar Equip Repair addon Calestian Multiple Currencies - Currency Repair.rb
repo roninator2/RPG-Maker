@@ -1,5 +1,5 @@
 # ╔═══════════════════════════════════════════════╦════════════════════╗
-# ║ Title: Currency Repair                        ║  Version: 1.00     ║
+# ║ Title: Currency Repair                        ║  Version: 1.04     ║
 # ║ Author: Roninator2                            ║                    ║
 # ╠═══════════════════════════════════════════════╬════════════════════╣
 # ║ Function:                                     ║   Date Created     ║
