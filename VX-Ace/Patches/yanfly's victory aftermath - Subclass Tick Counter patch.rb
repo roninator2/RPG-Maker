@@ -1,5 +1,5 @@
 # ╔═══════════════════════════════════════════════╦════════════════════╗
-# ║ Title: Victory Aftermath Subclass Patch       ║  Version: 1.00     ║
+# ║ Title: Victory Aftermath Subclass Patch       ║  Version: 1.01     ║
 # ║ Author: Roninator2                            ║                    ║
 # ╠═══════════════════════════════════════════════╬════════════════════╣
 # ║ Function:                                     ║   Date Created     ║
@@ -23,7 +23,7 @@
 # ╔════════════════════════════════════════════════════════════════════╗
 # ║ Updates:                                                           ║
 # ║ 1.00 - 22 Mar 2022 - Script finished                               ║
-# ║                                                                    ║
+# ║ 1.01 - 14 Mar 2026 - Added Import Value                            ║
 # ╚════════════════════════════════════════════════════════════════════╝
 # ╔════════════════════════════════════════════════════════════════════╗
 # ║ Credits and Thanks:                                                ║
@@ -35,12 +35,14 @@
 # ║  Follow the original Authors terms of use where applicable         ║
 # ║    - When not made by me (Roninator2)                              ║
 # ║  Free for all uses in RPG Maker except nudity                      ║
-# ║  Anyone using this script in their project before these terms      ║
-# ║  were changed are allowed to use this script even if it conflicts  ║
-# ║  with these new terms. New terms effective 03 Apr 2024             ║
 # ║  No part of this code can be used with AI programs or tools        ║
 # ║  Credit must be given                                              ║
 # ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║                      End of editable region                        ║
+# ╚════════════════════════════════════════════════════════════════════╝
+$imported = {} if $imported.nil?
+$imported[:r2_vasptc] = 1.01       # Victory Aftermath Subclass Patch
 
 class Game_Actor < Game_Battler
   def sub_exp
