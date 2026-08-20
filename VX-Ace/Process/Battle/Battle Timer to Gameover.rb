@@ -1,5 +1,5 @@
 # ╔═══════════════════════════════════════════════╦════════════════════╗
-# ║ Title: Battle Timer to Game Over              ║  Version: 1.00     ║
+# ║ Title: Battle Timer to Game Over              ║  Version: 1.01     ║
 # ║ Author: Roninator2                            ║                    ║
 # ╠═══════════════════════════════════════════════╬════════════════════╣
 # ║ Function:                                     ║   Date Created     ║
@@ -23,7 +23,7 @@
 # ╔════════════════════════════════════════════════════════════════════╗
 # ║ Updates:                                                           ║
 # ║ 1.00 - 22 Nov 2024 - Script finished                               ║
-# ║                                                                    ║
+# ║ 1.01 - 14 Mar 2026 - Added Import Value                            ║
 # ╚════════════════════════════════════════════════════════════════════╝
 # ╔════════════════════════════════════════════════════════════════════╗
 # ║ Credits and Thanks:                                                ║
@@ -35,9 +35,6 @@
 # ║  Follow the original Authors terms of use where applicable         ║
 # ║    - When not made by me (Roninator2)                              ║
 # ║  Free for all uses in RPG Maker except nudity                      ║
-# ║  Anyone using this script in their project before these terms      ║
-# ║  were changed are allowed to use this script even if it conflicts  ║
-# ║  with these new terms. New terms effective 03 Apr 2024             ║
 # ║  No part of this code can be used with AI programs or tools        ║
 # ║  Credit must be given                                              ║
 # ╚════════════════════════════════════════════════════════════════════╝
@@ -50,6 +47,8 @@ end
 # ╔════════════════════════════════════════════════════════════════════╗
 # ║                      End of editable region                        ║
 # ╚════════════════════════════════════════════════════════════════════╝
+$imported = {} if $imported.nil?
+$imported[:r2_btgo] = 1.01         # Battle Timer to Game Over
 
 class Scene_Map < Scene_Base
   alias hrk_update_no_timer_old update
