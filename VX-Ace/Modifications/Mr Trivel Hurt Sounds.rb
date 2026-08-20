@@ -1,103 +1,105 @@
-# )----------------------------------------------------------------------------(
-# )--     AUTHOR:     Mr Trivel                                              --(
-# )--     NAME:       Hurt Sounds Mod by Roninator2                          --(
-# )--     CREATED:    2020-10-10                                             --(
-# )--     VERSION:    1.2                                                    --(
-# )--     Request by: Rimaka                                                 --(
-# )----------------------------------------------------------------------------(
-# )--                         VERSION HISTORY                                --(
-# )--  1.0 - Initial scream.                                                 --(
-# )--  1.1 - No more screaming on healing.                                   --(
-# )--  1.2 - Randomize and multiple sounds.                                  --(
-# )----------------------------------------------------------------------------(
-# )--                          DESCRIPTION                                   --(
-# )--  Enemies and actors will play Sound Effect when getting hit.           --(
-# )----------------------------------------------------------------------------(
-# )--                          INSTRUCTIONS                                  --(
-# )--  Add <Hurt: SE_name, volume, pitch, %chance to play, force play>       --(
-# )--  to your Actor or Enemy note box.                                      --(
-# )--  Example: <Hurt: Bite, 100, 100, 40, true>                             --(
-# )--  If force play is true and random chance fails to play a sound,        --(
-# )--  the sound that is specified as forced will play                       --(
-# )--  only specify one sound to force play                                  --(
-# )--  Place multiple tags to use more than one sound                        --(
-# )----------------------------------------------------------------------------(
-# )--                          LICENSE INFO                                  --(
-# )--   Free for commercial and non-commercial games as long as credit is    --(
-# )--   given to Mr. Trivel.                                                 --(
-# )----------------------------------------------------------------------------(
-module R2_trivel_hurt_sound
-	CHANCE = 35
+# ╔═══════════════════════════════════════════════╦════════════════════╗
+# ║ Title: Mr Trivel Hurt Sounds Mod              ║  Version: 1.01     ║
+# ║ Author: Roninator2                            ║                    ║
+# ╠═══════════════════════════════════════════════╬════════════════════╣
+# ║ Function:                                     ║   Date Created     ║
+# ║  Play Hurt Sounds                             ╠════════════════════╣
+# ║  Rewrite of Mr Trivel script                  ║    18 Jul 2022     ║
+# ╚═══════════════════════════════════════════════╩════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Requires: nil                                                      ║
+# ║                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Brief Description:                                                 ║
+# ║       Allows to specify sounds                                     ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Instructions:                                                      ║
+# ║   Added on multiple sounds for actors and enemies.                 ║
+# ║   Randomized sound played                                          ║
+# ║                                                                    ║
+# ║  Add <Hurt: SE_name, volume, pitch> to your                        ║
+# ║   Actor or Enemy note box.                                         ║
+# ║  Example: <Hurt: Bite, 100, 100>                                   ║
+# ║                                                                    ║
+# ║  Multiple note tags can be used                                    ║
+# ║                                                                    ║
+# ║    Death Sound                                                     ║
+# ║  Add <Dead: SE_name, volume, pitch> to your                        ║
+# ║   Actor or Enemy note box.                                         ║
+# ║  Example: <Dead: Bite, 100, 100>                                   ║
+# ║                                                                    ║
+# ║  Multiple note tags can be used                                    ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Updates:                                                           ║
+# ║ 1.00 - 18 Jul 2022 - Initial publish                               ║
+# ║ 1.01 - 14 Mar 2026 - Added Import Value                            ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Credits and Thanks:                                                ║
+# ║   Roninator2                                                       ║
+# ║   Mr. Trivel                                                       ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║ Terms of use:                                                      ║
+# ║  Follow the original Authors terms of use where applicable         ║
+# ║    - When not made by me (Roninator2)                              ║
+# ║  Free for all uses in RPG Maker except nudity                      ║
+# ║  No part of this code can be used with AI programs or tools        ║
+# ║  Credit must be given                                              ║
+# ╚════════════════════════════════════════════════════════════════════╝
+
+module R2_Hurt_Sound_Mod
+ Hurt_Regex = /<Hurt:[ ]*(\w*),[ ]*(\d*),[ ]*(\d*)>/i
+ Dead_Regex = /<Dead:[ ]*(\w*),[ ]*(\d*),[ ]*(\d*)>/i
 end
-# )----------------------------------------------------------------------------(
-# )--  Class: Game_Battler                                                   --(
-# )----------------------------------------------------------------------------(
+
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║                      End of editable region                        ║
+# ╚════════════════════════════════════════════════════════════════════╝
+$imported = {} if $imported.nil?
+$imported[:r2_mthsm] = 1.01        # Mr Trivel Hurt Sounds Mod
+
 class Game_Battler < Game_BattlerBase
   alias :mrts_hurt_execute_damage :execute_damage
- 
-  # )--------------------------------------------------------------------------(
-  # )--  Alias Method: execute_damage                                        --(
-  # )--------------------------------------------------------------------------(
   def execute_damage(user)
     mrts_hurt_execute_damage(user)
-    return unless @hurt_sound && @result.hp_damage > 0
-		for c in 0..@hurt_sound.size - 1
-			if @hurt_sound[c][4] == true
-				play = true
-				pos = c
-			end
-			num = rand(100)
-			s = rand(@hurt_sound.size)
-			if user.hp <= 0 && num < @death_sound[3]
-				Audio.se_play(@death_sound[0], @death_sounds[1], @death_sound[2])
-				break
-			end
-			if num < @hurt_sound[s][3]
-				Audio.se_play(@hurt_sound[s][0], @hurt_sounds[s][1], @hurt_sound[s][2])
-				break
-			elsif play == true
-				Audio.se_play(@hurt_sound[pos][0], @hurt_sounds[pos][1], @hurt_sound[pos][2])
-			end
-		end
+    return unless (@hurt_sound.size > 0) && (@result.hp_damage > 0)
+    i = rand(@hurt_sound.size)
+    Audio.se_play(@hurt_sound[i][0], @hurt_sound[i][1].to_i, @hurt_sound[i][2].to_i)
   end
 end
- 
-# )----------------------------------------------------------------------------(
-# )--  Class: Game_Actor                                                     --(
-# )----------------------------------------------------------------------------(
 class Game_Actor < Game_Battler
   alias :mrts_hurt_setup :setup
- 
-  # )--------------------------------------------------------------------------(
-  # )--  Alias Method: setup                                                 --(
-  # )--------------------------------------------------------------------------(
   def setup(actor_id)
     mrts_hurt_setup(actor_id)
-    results = actor.note.scan(/<Hurt:[ ]*(\w*),[ ]*(\d*),[ ]*(\d+),[ ]*(\d+),[ ]*(\w*)>/i)
-		results.each do |i|
-			@hurt_sound << ["Audio/SE/"+$1, $2.to_i, $3.to_i, $4.to_i, $5]
-		end
-    actor.note.scan(/<Death:[ ]*(\w*),[ ]*(\d*),[ ]*(\d+),[ ]*(\d+)>/i)
-    $1 ? @death_sound = ["Audio/SE/"+$1, $2.to_i, $3.to_i, $4.to_i] : @death_sound = nil
+    @hurt_sound = []
+    @dead_sound = []
+    results = actor.note.scan(R2_Hurt_Sound_Mod::Hurt_Regex)
+    results.each do |res|
+      @hurt_sound.push(res)
+    end
+    dresults = actor.note.scan(R2_Hurt_Sound_Mod::Dead_Regex)
+    dresults.each do |res|
+      @dead_sound.push(res)
+    end
   end
 end
- 
-# )----------------------------------------------------------------------------(
-# )--  Class: Game_Enemy                                                     --(
-# )----------------------------------------------------------------------------(
 class Game_Enemy < Game_Battler
   alias :mrts_hurt_initialize :initialize
- 
-  # )--------------------------------------------------------------------------(
-  # )--  Alias Method: initialize                                            --(
-  # )--------------------------------------------------------------------------(
   def initialize(index, enemy_id)
     mrts_hurt_initialize(index, enemy_id)
-		results = enemy.note.scan[/<Hurt:[ ]*(\w*),[ ]*(\d*),[ ]*(\d+),[ ]*(\d+)>/i]
-		results.each do |i|
-		  @hurt_sound << ["Audio/SE/"+$1, $2.to_i, $3.to_i, $4.to_i]
-		end
-    enemy.note.scan(/<Death:[ ]*(\w*),[ ]*(\d*),[ ]*(\d+),[ ]*(\d+)>/i)
-    $1 ? @death_sound = ["Audio/SE/"+$1, $2.to_i, $3.to_i, $4.to_i] : @death_sound = nil
+    @hurt_sound = []
+    @dead_sound = []
+    results = enemy.note.scan(R2_Hurt_Sound_Mod::Hurt_Regex)
+    results.each do |res|
+      @hurt_sound.push(res)
+    end
+    dresults = enemy.note.scan(R2_Hurt_Sound_Mod::Dead_Regex)
+    dresults.each do |res|
+      @dead_sound.push(res)
+    end
   end
 end
