@@ -17,7 +17,7 @@ Can specify to use a background image or colour. Or set window opacity to full.
 Create your actor with unique skills, customize the category names
 
 view 0
-![View 0 acress](<View 0 acress.png>)
+![View 0 acress](<View 0 across.png>)
 
 View 1
 ![Alt text](images/View 1 down.png)
