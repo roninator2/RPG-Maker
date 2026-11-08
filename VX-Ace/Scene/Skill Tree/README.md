@@ -17,7 +17,7 @@ Can specify to use a background image or colour. Or set window opacity to full.
 Create your actor with unique skills, customize the category names
 
 view 0
-![Alt text](VX-Ace/Scene/Skill%20Tree/View%200%20acress.png)
+![Skill Tree](<VX-Ace/Scene/Skill Tree/View 0 acress.png>)
 
 View 1
 ![Alt text](images/View 1 down.png)
