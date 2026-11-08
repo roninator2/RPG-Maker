@@ -25,20 +25,5 @@ Create your actor with unique skills, customize the category names
 | :---: | :---: |
 | ![View 0](<View 2 plus.jpg>) | ![View 1](<View 3 default.jpg>) |
 
-view 0
-
-![View 0 acress](<View 0 across.png>)
-
-View 1
-
-![View 1 acress](<View 1 down.png>)
-
-View 2
-
-![View 2 acress](<View 2 plus.jpg>)
-
-View 3
-
-![View 3 acress](<View 3 default.jpg>)
 
 
