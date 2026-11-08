@@ -19,11 +19,11 @@ Create your actor with unique skills, customize the category names
 
 | Skill Tree View 0 | Skill Tree View 1 |
 | :---: | :---: |
-| ![View 0](<View 0 across.png>) | ![View 1](<View 1 acress.png>) |
+| ![View 0](<View 0 across.png>) | ![View 1](<View 1 down.png>) |
 
 | Skill Tree View 2 | Skill Tree View 3 |
 | :---: | :---: |
-| ![View 0](<View 2 plus.png>) | ![View 1](<View 3 default.png>) |
+| ![View 0](<View 2 plus.jpg>) | ![View 1](<View 3 default.jpg>) |
 
 view 0
 
