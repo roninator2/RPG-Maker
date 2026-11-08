@@ -26,10 +26,10 @@ View 1
 
 View 2
 
-![View 2 acress](<View 2 plus.png>)
+![View 2 acress](<View 2 plus.jpg>)
 
 View 3
 
-![View 3 acress](<View 3 default.png>)
+![View 3 acress](<View 3 default.jpg>)
 
 
