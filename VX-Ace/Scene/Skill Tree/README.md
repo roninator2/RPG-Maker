@@ -22,14 +22,14 @@ view 0
 
 View 1
 
-![View 0 acress](<View 1 down.png>)
+![View 1 acress](<View 1 down.png>)
 
 View 2
 
-![View 0 acress](<View 2 plus.png>)
+![View 2 acress](<View 2 plus.png>)
 
 View 3
 
-![View 0 acress](<View 3 default.png>)
+![View 3 acress](<View 3 default.png>)
 
 
