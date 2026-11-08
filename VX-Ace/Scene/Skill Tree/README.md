@@ -16,6 +16,15 @@ Can specify to use a background image or colour. Or set window opacity to full.
 
 Create your actor with unique skills, customize the category names
 
+
+| Skill Tree View 0 | Skill Tree View 1 |
+| :---: | :---: |
+| ![View 0](<View 0 across.png>) | ![View 1](<View 1 acress.png>) |
+
+| Skill Tree View 2 | Skill Tree View 3 |
+| :---: | :---: |
+| ![View 0](<View 2 plus.png>) | ![View 1](<View 3 default.png>) |
+
 view 0
 
 ![View 0 acress](<View 0 across.png>)
